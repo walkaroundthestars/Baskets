@@ -20,13 +20,14 @@ class Main:
             frame = cv.flip(frame, 1)
             height, width, channels = frame.shape
 
-            results, frame = self.tracker.process_frame(frame)
+            points, frame = self.tracker.process_frame(frame)
+            print(points)
 
             if random.random() < 0.05:
                 self.balls.append(Ball(random.randint(15, width - 15)))
 
             for ball in self.balls:
-                ball.update(height)
+                ball.update(height, 0.5, points)
                 cv.circle(frame, (int(ball.x), int(ball.y)), 15, ball.color, -1)
 
             cv.imshow('Video', frame)

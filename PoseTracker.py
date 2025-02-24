@@ -16,6 +16,7 @@ class PoseTracker:
     def process_frame(self, frame):
         image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         results = self.pose.process(image_rgb)
+        points = []
 
         if results.pose_landmarks:
             for connection in self.upper_body_connections:
@@ -24,6 +25,7 @@ class PoseTracker:
                 h, w, _ = frame.shape
                 start_point = (int(start.x * w), int(start.y * h))
                 end_point = (int(end.x * w), int(end.y * h))
+                points.append((start_point, end_point))
                 cv2.line(frame, start_point, end_point, (0, 255, 0), 4)
 
-        return results, frame
+        return points, frame
