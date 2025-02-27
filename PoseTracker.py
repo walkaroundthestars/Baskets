@@ -7,11 +7,27 @@ class PoseTracker:
         self.mp_pose = mp.solutions.pose
         self.pose = self.mp_pose.Pose()
         self.upper_body_connections = [
-            (self.mp_pose.PoseLandmark.LEFT_WRIST, self.mp_pose.PoseLandmark.LEFT_ELBOW),
-            (self.mp_pose.PoseLandmark.LEFT_ELBOW, self.mp_pose.PoseLandmark.LEFT_SHOULDER),
-            (self.mp_pose.PoseLandmark.LEFT_SHOULDER, self.mp_pose.PoseLandmark.RIGHT_SHOULDER),
-            (self.mp_pose.PoseLandmark.RIGHT_WRIST, self.mp_pose.PoseLandmark.RIGHT_ELBOW),
-            (self.mp_pose.PoseLandmark.RIGHT_ELBOW, self.mp_pose.PoseLandmark.RIGHT_SHOULDER)]
+            (
+                self.mp_pose.PoseLandmark.LEFT_WRIST,
+                self.mp_pose.PoseLandmark.LEFT_ELBOW,
+            ),
+            (
+                self.mp_pose.PoseLandmark.LEFT_ELBOW,
+                self.mp_pose.PoseLandmark.LEFT_SHOULDER,
+            ),
+            (
+                self.mp_pose.PoseLandmark.LEFT_SHOULDER,
+                self.mp_pose.PoseLandmark.RIGHT_SHOULDER,
+            ),
+            (
+                self.mp_pose.PoseLandmark.RIGHT_WRIST,
+                self.mp_pose.PoseLandmark.RIGHT_ELBOW,
+            ),
+            (
+                self.mp_pose.PoseLandmark.RIGHT_ELBOW,
+                self.mp_pose.PoseLandmark.RIGHT_SHOULDER,
+            ),
+        ]
 
     def process_frame(self, frame):
         image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

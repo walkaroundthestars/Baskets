@@ -1,5 +1,4 @@
 import random
-import cv2 as cv
 import numpy as np
 
 
@@ -14,11 +13,10 @@ class Ball:
         self.color = (
             random.randint(0, 255),  # R
             random.randint(0, 255),  # G
-            random.randint(0, 255)  # B
+            random.randint(0, 255),  # B
         )
 
     def update(self, height, gravity, points):
-
         self.vy += gravity
         self.x += self.vx  # Add horizontal movement
         self.y += self.vy
@@ -42,7 +40,7 @@ class Ball:
 
             if distance <= self.radius:  # Collision detected
                 # **Find Normal and Tangent**
-                normal = (ball_pos - closest_point)
+                normal = ball_pos - closest_point
                 normal = normal / np.linalg.norm(normal)  # Normalize normal vector
                 tangent = np.array([-normal[1], normal[0]])  # Perpendicular tangent
 
@@ -56,14 +54,15 @@ class Ball:
 
                 # **Update ball velocity**
                 self.vx, self.vy = reflection[0], reflection[1]
-                self.x, self.y = closest_point + normal * (self.radius + 1)  # Prevent overlap
+                self.x, self.y = closest_point + normal * (
+                    self.radius + 1
+                )  # Prevent overlap
 
                 # Stop jittering when movement is too small
                 if abs(self.vy) < 1:
                     self.vy = 0
                 if abs(self.vx) < 0.5:
                     self.vx = 0
-
 
         if self.y + self.radius > height:
             self.y = height - self.radius

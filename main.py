@@ -5,7 +5,6 @@ from PoseTracker import PoseTracker
 
 
 class Main:
-
     def __init__(self):
         self.camera = cv.VideoCapture(0)
         self.balls = []
@@ -30,15 +29,15 @@ class Main:
                 ball.update(height, 0.5, points)
                 cv.circle(frame, (int(ball.x), int(ball.y)), 15, ball.color, -1)
 
-            cv.imshow('Video', frame)
+            cv.imshow("Video", frame)
 
-            if cv.waitKey(15) & 0xFF == ord('q'):
+            if cv.waitKey(15) & 0xFF == ord("q"):
                 break
 
         self.camera.release()
         cv.destroyAllWindows()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = Main()
     app.game()
