@@ -20,12 +20,12 @@ class PoseTracker:
                 self.mp_pose.PoseLandmark.RIGHT_SHOULDER,
             ),
             (
-                self.mp_pose.PoseLandmark.RIGHT_WRIST,
+                self.mp_pose.PoseLandmark.RIGHT_SHOULDER,
                 self.mp_pose.PoseLandmark.RIGHT_ELBOW,
             ),
             (
                 self.mp_pose.PoseLandmark.RIGHT_ELBOW,
-                self.mp_pose.PoseLandmark.RIGHT_SHOULDER,
+                self.mp_pose.PoseLandmark.RIGHT_WRIST,
             ),
         ]
 

@@ -1,7 +1,6 @@
 import random
 import numpy as np
 
-
 class Ball:
     def __init__(self, x_pos, radius=15):
         self.radius = radius
@@ -17,11 +16,12 @@ class Ball:
         )
 
     def update(self, height, gravity, points):
-        self.vy += gravity
+        self.vy += gravity # WHAT THE FUCK IS GRAVITY, and why it's being added to vy
         self.x += self.vx  # Add horizontal movement
         self.y += self.vy
 
         for point in points:
+            # We take a start and end position of each segment
             start, end = np.array(point[0]), np.array(point[1])
             ball_pos = np.array([self.x, self.y])
 
